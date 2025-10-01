@@ -1,0 +1,1797 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb",
+    "name": "Meraki - Move Network Between Organizations",
+    "title": "Meraki - Move Network Between Organizations",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Network Move URL",
+          "type": "datatype.string",
+          "description": "URL to view the network move status in the Meraki Dashboard",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKPC191VnkkX5mE6gyD5bPkSl8qI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Source Organization Name or ID",
+          "type": "datatype.string",
+          "description": "The name or ID of the organization containing the network to be moved. This field is required and must match an existing organization.",
+          "is_required": true,
+          "display_on_wizard": true,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKO2AE7Nv9ble5ziMyitN6GUjukN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Move Operation Status",
+          "type": "datatype.string",
+          "description": "Current status of the network move operation (in_progress, completed, failed)",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Source Organization ID",
+          "type": "datatype.string",
+          "description": "ID of the organization from which the network was moved",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKOUQS5gzqnWSJqjg5XvdIhOx8Qj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Network ID",
+          "type": "datatype.string",
+          "description": "ID of the network that was moved",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKNTT73WHMsGItOKf9TVZBw4ojl1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Network Move ID",
+          "type": "datatype.string",
+          "description": "Unique identifier for the network move operation",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKPUR05sAa6zxnPOMelTSaAhsSnT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Error Details",
+          "type": "datatype.string",
+          "description": "Detailed error information if the workflow fails",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKO8ST0AyiC2SgO1PAbMzRxQcGAe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "input",
+          "name": "Wait for Completion",
+          "type": "datatype.boolean",
+          "description": "If true, the workflow will wait for the move operation to complete before finishing. If false, the workflow will initiate the move and return immediately.",
+          "is_required": false,
+          "display_on_wizard": true,
+          "is_invisible": false,
+          "variable_string_format": ""
+        },
+        "unique_name": "variable_workflow_02PT5RYGKOPLJ0Lx2o0zvDBNJP99TCMt3c5",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Destination Organization Name or ID",
+          "type": "datatype.string",
+          "description": "The name or ID of the organization where the network will be moved. This field is required and must match an existing organization.",
+          "is_required": true,
+          "display_on_wizard": true,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKPP6Z5HOB0Gtq6T7sCBkXYf8GPb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Destination Organization ID",
+          "type": "datatype.string",
+          "description": "ID of the organization to which the network was moved",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKPH9W7MDEMx41cEkaiJUN3AOsOa",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "local",
+          "name": "Elapsed Time Seconds",
+          "type": "datatype.integer",
+          "description": "Tracks elapsed time during polling",
+          "is_required": false,
+          "display_on_wizard": false,
+          "is_invisible": false,
+          "variable_string_format": ""
+        },
+        "unique_name": "variable_workflow_02PT5RYGKP6R42hd099psLFHAL4Cl6OmlXi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Name",
+          "type": "datatype.string",
+          "description": "The exact name of the network to move. This field is required and case-sensitive.",
+          "is_required": true,
+          "display_on_wizard": true,
+          "is_invisible": false,
+          "variable_string_format": "text"
+        },
+        "unique_name": "variable_workflow_02PT5RYGKP0K65fExOrvIvgBjw5iwVp2llT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 300,
+          "scope": "input",
+          "name": "Timeout Seconds",
+          "type": "datatype.integer",
+          "description": "Maximum time to wait for the move operation to complete (in seconds). Only used when 'Wait for Completion' is true.",
+          "is_required": false,
+          "display_on_wizard": true,
+          "is_invisible": false,
+          "variable_string_format": ""
+        },
+        "unique_name": "variable_workflow_02PT5RYGKQ19055W7111qLJEGxiSTXo7IVE",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow moves a Meraki network from one organization to another. \n\n**Notes**\n- Ensure that Early API Access is enabled for the source and destination organizations, which can be found under Organization \u003e Early Access.\n- Create a Meraki Target, if one doesn't already exist.\n- If moving Networks to orgs on other shards is required, reach out to the Cisco Networking Product Team to be included in the beta.\n\n*Currently both organizations must exist on the same shard (nXXX.meraki.com). Network moves between shards is in private beta.*",
+      "display_name": "Meraki - Move Network Between Organizations",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "meraki.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_02PT5RYMY0YIZ7E7u6KFk837z2aAnqGLK3m",
+        "name": "Group",
+        "title": "Input Validation and Data Collection",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Validates inputs and retrieves required organization and network information",
+          "display_as_suggestion": false,
+          "display_name": "Input Validation and Data Collection",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_02PT5RYO34VSG3mmcpn0RxG9MK2u90CHolP",
+            "name": "Condition Block",
+            "title": "Validate Required Inputs",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "conditions": [],
+              "continue_on_failure": false,
+              "display_name": "Validate Required Inputs",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_02PT5RYOR9HNE7CBqVm6OCq0aDCv884N2YR",
+                "name": "Condition Branch",
+                "title": "Invalid Inputs",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKO2AE7Nv9ble5ziMyitN6GUjukN$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "operator": "or",
+                      "right_operand": {
+                        "left_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKPP6Z5HOB0Gtq6T7sCBkXYf8GPb$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      }
+                    },
+                    "operator": "or",
+                    "right_operand": {
+                      "left_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKP0K65fExOrvIvgBjw5iwVp2llT$",
+                      "operator": "eq",
+                      "right_operand": ""
+                    }
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Invalid Inputs",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02PT5RYPV8KQ91HavQWsO5Db5Vf4FuY48p1",
+                    "name": "Set Variables",
+                    "title": "Set Error Details",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Error Details",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKO8ST0AyiC2SgO1PAbMzRxQcGAe$",
+                          "variable_value_new": "Required input fields are missing or empty. Please provide Source Organization, Network Name, and Destination Organization."
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                          "variable_value_new": "failed"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_02PT5RYQKRXVQ68XkZidpIH8yNWHIH2BkXD",
+                    "name": "Completed",
+                    "title": "Input Validation Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "continue_on_failure": false,
+                      "display_name": "Input Validation Failed",
+                      "result_message": "Workflow failed due to invalid or missing inputs",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM",
+            "name": "Meraki - Get Source Network Information",
+            "title": "Meraki - Get Source Network Information",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": true,
+              "description": "Retrieves network information from the source organization. If this fails, error details will be set and the workflow will fail.",
+              "display_name": "Meraki - Get Source Network Information",
+              "input": {
+                "variable_workflow_02LCRACABYWD40LVa27k00YndGuostARjdp": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKO2AE7Nv9ble5ziMyitN6GUjukN$",
+                "variable_workflow_02LCRAQ5WICDM3PgxFwKyi19yaeu1bTpVUx": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKP0K65fExOrvIvgBjw5iwVp2llT$",
+                "variable_workflow_02LEUF5N782ES5q1O7K4p1AoMBPrkkcxi1E": false
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "target_type": "meraki.endpoint",
+                "use_workflow_target": true
+              },
+              "workflow_id": "definition_workflow_02LCR4UKH38PM6zDR4Bx2b2J165gCF1mhvh",
+              "workflow_name": "Meraki - Get Network By Name or ID"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_02PT5RYT03XW67b4F4W47ZoJrSM0To8fOfl",
+            "name": "Error Handler",
+            "title": "Handle Source Network Retrieval Error",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "conditions": [],
+              "continue_on_failure": false,
+              "display_name": "Handle Source Network Retrieval Error",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_02PT5RYTN39WC4n53MORHSkKHbGuh4diYOn",
+                "name": "Condition Branch",
+                "title": "Source Network Retrieval Failed",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02LCSAES32AOH7RGaVHj5aM3SixcS34Qdqc$",
+                    "operator": "eqi",
+                    "right_operand": "Network Not Found"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Source Network Retrieval Failed",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02PT5RYUSH5BJ1iNYkEILx0DCve79IaZvjq",
+                    "name": "Set Variables",
+                    "title": "Set Source Network Error Details",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Source Network Error Details",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKO8ST0AyiC2SgO1PAbMzRxQcGAe$",
+                          "variable_value_new": "Failed to retrieve source network information. Please verify the source organization and network name."
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                          "variable_value_new": "failed"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_02PT5RYVJVRO07dD7vYyjBRhtNr4qsC6EW3",
+                    "name": "Completed",
+                    "title": "Source Network Retrieval Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "continue_on_failure": false,
+                      "display_name": "Source Network Retrieval Failed",
+                      "result_message": "Workflow failed due to source network retrieval error.",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_02PT5RYWQX7P36pUiWXwPL8n2d8LjYGlF2C",
+            "name": "Meraki - Get Destination Organization Information",
+            "title": "Meraki - Get Destination Organization Information",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": true,
+              "description": "Retrieves organization information for the destination organization. If this fails, error details will be set and the workflow will fail.",
+              "display_name": "Meraki - Get Destination Organization Information",
+              "input": {
+                "variable_workflow_02PT5RYK6FPXJ46t3yLzmdaXgtFO5kl75xO": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKPP6Z5HOB0Gtq6T7sCBkXYf8GPb$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "target_type": "meraki.endpoint",
+                "use_workflow_target": true
+              },
+              "workflow_id": "definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm",
+              "workflow_name": "Copy(1)-Meraki - Get Organization By ID or Name"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_02PT5RYXUVYQA2P8pUKFipHPV0fUgp8zELL",
+            "name": "Error Handler",
+            "title": "Handle Destination Organization Retrieval Error",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "conditions": [],
+              "continue_on_failure": false,
+              "display_name": "Handle Destination Organization Retrieval Error",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_02PT5RYYHLGEX5VZtdYedhHzWeHrtMnHodS",
+                "name": "Condition Branch",
+                "title": "Destination Organization Retrieval Failed",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02LCSAES32AOH7RGaVHj5aM3SixcS34Qdqc$",
+                    "operator": "eqi",
+                    "right_operand": "Network Not Found"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Destination Organization Retrieval Failed",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02PT5RYZQK7130esCHGX72h7NNHan3mZT59",
+                    "name": "Set Variables",
+                    "title": "Set Destination Organization Error Details",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Destination Organization Error Details",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKO8ST0AyiC2SgO1PAbMzRxQcGAe$",
+                          "variable_value_new": "Failed to retrieve destination organization information. Please verify the destination organization name or ID."
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                          "variable_value_new": "failed"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_02PT5RZ0H8AMV4yFtT87PHz1Y7zNgXpLTnN",
+                    "name": "Completed",
+                    "title": "Destination Organization Retrieval Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "continue_on_failure": false,
+                      "display_name": "Destination Organization Retrieval Failed",
+                      "result_message": "Workflow failed due to destination organization retrieval error.",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_02PT5RZ1378AS6UACGZDwrS0hYJmp8UrFCv",
+        "name": "Group",
+        "title": "Execute Network Move Operation",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Initiates the network move operation via Meraki API",
+          "display_as_suggestion": false,
+          "display_name": "Execute Network Move Operation",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_02PT5RZ2DOPZJ6CdQsec6K793SjG1uhCJXJ",
+            "name": "Generic Meraki API Request",
+            "title": "Initiate Network Move",
+            "type": "meraki.api_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "api_body": "{\n  \"target\": \"$activity.definition_activity_02PT5RYWQX7P36pUiWXwPL8n2d8LjYGlF2C.output.variable_workflow_02PT5RYK6FV4H6fh7qYlPGFWTc7jH9FPBed$\",\n  \"networkId\": \"$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02LCRLPN6EZY51pb3GRpQG7QdKWS452YyuL$\"\n}",
+              "api_method": "POST",
+              "api_url": "/api/v1/organizations/$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02L9B69LOVYPZ5Bd2cu1dcvbQMmyiMszobN$/networks/moves",
+              "continue_on_failure": false,
+              "description": "Initiates the network move operation",
+              "display_name": "Initiate Network Move",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_02PT5RZ3PH3IN5SOicQ1pGzxf1wciNjbCHh",
+            "name": "JSONPath Query",
+            "title": "Parse Move Initiation Response",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Parse Move Initiation Response",
+              "input_json": "$activity.definition_activity_02PT5RZ2DOPZJ6CdQsec6K793SjG1uhCJXJ.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$.networkMoveId",
+                  "jsonpath_query_name": "Network Move ID",
+                  "jsonpath_query_type": "string"
+                },
+                {
+                  "jsonpath_query": "$.url",
+                  "jsonpath_query_name": "Dashboard URL",
+                  "jsonpath_query_type": "string"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_02PT5RZ51RAMR3szbv4KHELJDI7k47Xwlnd",
+            "name": "Set Variables",
+            "title": "Update Initial Move Status",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Update Initial Move Status",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKPUR05sAa6zxnPOMelTSaAhsSnT$",
+                  "variable_value_new": "$activity.definition_activity_02PT5RZ3PH3IN5SOicQ1pGzxf1wciNjbCHh.output.jsonpath_queries.Network Move ID$"
+                },
+                {
+                  "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKPC191VnkkX5mE6gyD5bPkSl8qI$",
+                  "variable_value_new": "$activity.definition_activity_02PT5RZ3PH3IN5SOicQ1pGzxf1wciNjbCHh.output.jsonpath_queries.Dashboard URL$"
+                },
+                {
+                  "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                  "variable_value_new": "in progress"
+                },
+                {
+                  "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOUQS5gzqnWSJqjg5XvdIhOx8Qj$",
+                  "variable_value_new": "$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02L9B69LOVYPZ5Bd2cu1dcvbQMmyiMszobN$"
+                },
+                {
+                  "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKPH9W7MDEMx41cEkaiJUN3AOsOa$",
+                  "variable_value_new": "$activity.definition_activity_02PT5RYWQX7P36pUiWXwPL8n2d8LjYGlF2C.output.variable_workflow_02PT5RYK6FV4H6fh7qYlPGFWTc7jH9FPBed$"
+                },
+                {
+                  "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKNTT73WHMsGItOKf9TVZBw4ojl1$",
+                  "variable_value_new": "$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02LCRLPN6EZY51pb3GRpQG7QdKWS452YyuL$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_02PT5RZ68120F30yNKoL941ZG86r11mNWnP",
+        "name": "Condition Block",
+        "title": "Should Wait for Completion?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "description": "Determines whether to wait for the move operation to complete",
+          "display_name": "Should Wait for Completion?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_02PT5RZ6UEF844C0ZST0MInDb2JcOL5GLl7",
+            "name": "Condition Branch",
+            "title": "Yes - Wait for Completion",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKOPLJ0Lx2o0zvDBNJP99TCMt3c5$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "Yes - Wait for Completion",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_02PT5RZ7RF8J73LWLt9elBOTl5AemKbGXLa",
+                "name": "While Loop",
+                "title": "Monitor Move Progress",
+                "type": "logic.while",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "description": "Continuously monitors the network move progress until completion or timeout",
+                  "display_name": "Monitor Move Progress",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_02PT5RZ8DDA2Z4OkDj0ejwXrw8RkBnsFjVj",
+                    "name": "Condition Branch",
+                    "title": "Move Still In Progress",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                        "operator": "eq",
+                        "right_operand": "in progress"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Move Still In Progress",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_02PT5RZ9A5XRZ4VFX35sipyrYRvzaptUpIj",
+                        "name": "Condition Block",
+                        "title": "Check Timeout",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "conditions": [],
+                          "continue_on_failure": false,
+                          "display_name": "Check Timeout",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_02PT5RZA2IM5C3MRKhrpHiyROazU6jVx4Cv",
+                            "name": "Condition Branch",
+                            "title": "Timeout Reached",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.local.variable_workflow_02PT5RYGKP6R42hd099psLFHAL4Cl6OmlXi$",
+                                "operator": "gte",
+                                "right_operand": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKQ19055W7111qLJEGxiSTXo7IVE$"
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "Timeout Reached",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_02PT5RZBARN9D1B0BJMaxFcLsDTZx6lULHo",
+                                "name": "Set Variables",
+                                "title": "Set Timeout Error",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Set Timeout Error",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKO8ST0AyiC2SgO1PAbMzRxQcGAe$",
+                                      "variable_value_new": "Network move operation timed out after $workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.input.variable_workflow_02PT5RYGKQ19055W7111qLJEGxiSTXo7IVE$ seconds. Check the Dashboard URL for current status."
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                                      "variable_value_new": "timeout"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_02PT5RZC554RI12hC4BO6TILQrPwuPVvLks",
+                                "name": "Completed",
+                                "title": "Timeout Reached",
+                                "type": "logic.completed",
+                                "base_type": "activity",
+                                "properties": {
+                                  "completion_type": "failed-completed",
+                                  "continue_on_failure": false,
+                                  "display_name": "Timeout Reached",
+                                  "result_message": "Network move operation timed out",
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_02PT6HHGY5HIE1dXeBeVsoKsz8PQYI9y7Ic",
+                                "name": "Completed",
+                                "title": "Workflow Failed",
+                                "type": "logic.completed",
+                                "base_type": "activity",
+                                "properties": {
+                                  "completion_type": "failed-completed",
+                                  "continue_on_failure": false,
+                                  "description": "Return failure message and quit.",
+                                  "display_name": "Workflow Failed",
+                                  "result_message": "Error: Timeout Reached",
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_02PT5RZCTOWQD6AacRObpOLk3vTRZF4Qamq",
+                        "name": "Sleep",
+                        "title": "Wait Between Status Checks",
+                        "type": "core.sleep",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Wait Between Status Checks",
+                          "skip_execution": false,
+                          "sleep_interval": 5
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_02PT5VMD2VT3E3vl47HeNRe6lTCMY3QIOqD",
+                        "name": "Generic Meraki API Request",
+                        "title": "Get Network Move Status",
+                        "type": "meraki.api_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "api_method": "GET",
+                          "api_url": "/api/v1/organizations/$activity.definition_activity_02PT5RYRR4CLL18zqjYkiUt5pKgDU2iUmrM.output.variable_workflow_02L9B69LOVYPZ5Bd2cu1dcvbQMmyiMszobN$/networks/moves/$activity.definition_activity_02PT5RZ3PH3IN5SOicQ1pGzxf1wciNjbCHh.output.jsonpath_queries.Network Move ID$",
+                          "continue_on_failure": false,
+                          "description": "Checks the status of the move operation",
+                          "display_name": "Get Network Move Status",
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "use_workflow_target": true
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_02PT5XVOJ834M09F11XdJ83TZTyr01ZMdHN",
+                        "name": "JSONPath Query",
+                        "title": "Parse Move Status",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "Parse Move Status",
+                          "input_json": "$activity.definition_activity_02PT5VMD2VT3E3vl47HeNRe6lTCMY3QIOqD.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$",
+                              "jsonpath_query_name": "Result",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            },
+                            {
+                              "jsonpath_query": "$.createdAt",
+                              "jsonpath_query_name": "Created At",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            },
+                            {
+                              "jsonpath_query": "$.lastUpdatedAt",
+                              "jsonpath_query_name": "Last Updated At",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            },
+                            {
+                              "jsonpath_query": "$.status",
+                              "jsonpath_query_name": "Status",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            },
+                            {
+                              "jsonpath_query": "$.organizations.source.id",
+                              "jsonpath_query_name": "Source Organization ID",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            },
+                            {
+                              "jsonpath_query": "$.organizations.target.id",
+                              "jsonpath_query_name": "Destination Organization ID",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            },
+                            {
+                              "jsonpath_query": "$.network.id",
+                              "jsonpath_query_name": "Network ID",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_02PT60UOZNXL46aPwo2vEXp1NOMsjo0H6IM",
+                        "name": "Set Variables",
+                        "title": "Update Move Status",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Update Move Status",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.output.variable_workflow_02PT5RYGKOEF92L5ScoAg5NMVFsuedUUZEh$",
+                              "variable_value_new": "$activity.definition_activity_02PT5XVOJ834M09F11XdJ83TZTyr01ZMdHN.output.jsonpath_queries.Status$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.local.variable_workflow_02PT5RYGKP6R42hd099psLFHAL4Cl6OmlXi$",
+                              "variable_value_new": "$workflow.definition_workflow_02PT5RYG9BGLA4yKPqLve2DthbUsXUSpMxb.local.variable_workflow_02PT5RYGKP6R42hd099psLFHAL4Cl6OmlXi$+5"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_02PT6HVUBT19J78v6nIwbOzjjAwGulRKgJl",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "continue_on_failure": false,
+          "description": "Completed action",
+          "display_name": "Completed",
+          "result_message": "Network move completed successfully.",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_02OOAFLMGJ4KK0IEdbRPMLTDia5XfCp6AqX",
+      "category_02OOAKBY11CQU4moEi2emtfRzc0y2bB6W2h"
+    ]
+  },
+  "categories": {
+    "category_02OOAFLMGJ4KK0IEdbRPMLTDia5XfCp6AqX": {
+      "unique_name": "category_02OOAFLMGJ4KK0IEdbRPMLTDia5XfCp6AqX",
+      "name": "Complete",
+      "title": "Complete",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_02OOAKBY11CQU4moEi2emtfRzc0y2bB6W2h": {
+      "unique_name": "category_02OOAKBY11CQU4moEi2emtfRzc0y2bB6W2h",
+      "name": "Generic Requests",
+      "title": "Generic Requests",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm",
+        "name": "Copy(1)-Meraki - Get Organization By ID or Name",
+        "title": "Copy(1)-Meraki - Get Organization By ID or Name",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Input - Organization ID or Name to Get",
+              "type": "datatype.string",
+              "description": "Provide the Organization Name to retrieve details. Enter only the Organization name without any quotes. ",
+              "is_required": true,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "text"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6FPXJ46t3yLzmdaXgtFO5kl75xO",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Management Details",
+              "type": "datatype.string",
+              "description": " An object containing management-related details. Example: label for a management detail, such as \"MSP ID\".",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "json"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6E3NW30v11etF4wFmmvrIPUUDBo",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Cloud Region Details",
+              "type": "datatype.string",
+              "description": "An object providing information about the cloud region associated with the organization. Example: The name of the region, like \"North America\"",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "json"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6F7SL4TKDEVJMJmyOabD5ORN9Uy",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.integer",
+            "properties": {
+              "value": 0,
+              "scope": "output",
+              "name": "Output - Status Code",
+              "type": "datatype.integer",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": ""
+            },
+            "unique_name": "variable_workflow_02PT5RYK6DSPJ6oPbQLedfccYZRXfgwMlYE",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - License Model",
+              "type": "datatype.string",
+              "description": "An object detailing the licensing model used by the organization. Example: \"co-term\" indicates a co-termination licensing model where all licenses expire on the same date.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "json"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6EVUA6rLd5U18ylHfBSVbHaSCvw",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Error Message",
+              "type": "datatype.string",
+              "description": "The HTTP error message of the API response.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "text"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6GJ9M1P35GgIwa9QGDu7qvJjke0",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Status Message",
+              "type": "datatype.string",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": ""
+            },
+            "unique_name": "variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Organization ID",
+              "type": "datatype.string",
+              "description": "This is the unique identifier for the organization. Example: \"2930418\". It's used to reference the organization in API calls.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "text"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6FV4H6fh7qYlPGFWTc7jH9FPBed",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Result",
+              "type": "datatype.string",
+              "description": "Raw API response.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "json"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6G5K55jApNVTwoI27vP00kOFNEt",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Organization Name",
+              "type": "datatype.string",
+              "description": "The name of the organization. This is the display name used in the Meraki Dashboard.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "text"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6EC7F24qOwwsUzECwpnZlii8X5d",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - Organization URL",
+              "type": "datatype.string",
+              "description": "This is the URL to access the organization within the Meraki Dashboard.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "text"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6FGK162ih0PbCNHxMbDCtTQY1gS",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "Output - API Enabled",
+              "type": "datatype.string",
+              "description": "An object that contains information about the API status for the organization.\nenabled: A boolean value (true in this case) indicating whether the API access is enabled for the organization.",
+              "is_required": false,
+              "display_on_wizard": false,
+              "is_invisible": false,
+              "variable_string_format": "json"
+            },
+            "unique_name": "variable_workflow_02PT5RYK6EICM4TfYqdRmMgP2T6XCGLSRBY",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "description": "**Cisco Meraki - Organizations - Get Organization By Name**\n\nA utility to lookup the Organization by Name. \n\n**Target:** A Meraki Endpoint using HTTPS \"api.meraki.com\" port 443 and no path.\n\n**Account Key:** Meraki User API Key. API Key can be generated from Meraki Dashboard -\u003e User Profile -\u003e API Access.\n",
+          "display_name": "Copy(1)-Meraki - Get Organization By ID or Name",
+          "runtime_user": {
+            "target_default": true
+          },
+          "target": {
+            "target_type": "meraki.endpoint",
+            "specify_on_workflow_start": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z",
+            "name": "Get Organizations",
+            "title": "Get Organizations",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Get Organizations",
+              "input": {
+                "variable_workflow_02LXK9KUOD0MH4qj4j062vm12gYmFb9y5N0": 1000,
+                "variable_workflow_02LXKBG6HGMSD1YojnHQ3bM2cT6mP8A02A9": "",
+                "variable_workflow_02LXKCCX4AREX6odSHkvY5oECunJtqcLahK": ""
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "target_type": "meraki.endpoint",
+                "use_workflow_target": true
+              },
+              "workflow_id": "definition_workflow_02LV5GIDUTY3X0WhuidM5ZWhkjL8wQCGAPq",
+              "workflow_name": "Meraki - Get Organizations"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_02PT5RYOFCXBK5zDjNE5n4RM57n3Q0oPBlG",
+            "name": "Condition Block",
+            "title": "Was The Request Successful?",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "conditions": [],
+              "continue_on_failure": false,
+              "display_name": "Was The Request Successful?",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_02PT5RYP4A7FH4AJ1ob61poonWv6nRc19VX",
+                "name": "Condition Branch",
+                "title": "200/Success",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXKZLXKLJFB451gVbqCxrIVfpczDAxuGy$",
+                    "operator": "eq",
+                    "right_operand": 200
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "200/Success",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02PT5RYQ5GUT24znqYMJppi4U6ZQqQlZmbm",
+                    "name": "Read Table from JSON",
+                    "title": "Read Table from JSON",
+                    "type": "corejava.read_table_from_json",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "description": "This saves the response JSON in table.",
+                      "display_name": "Read Table from JSON",
+                      "input_json": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXKZA6725S35QBWMZCg1AlZnT11mbSFQi$",
+                      "jsonpath_query": "$.*",
+                      "persist_output": true,
+                      "populate_columns": false,
+                      "skip_execution": false,
+                      "table_columns": [
+                        {
+                          "column_name": "id",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "name",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "url",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "api",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "licensing",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "cloudRegion",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "managementDetails",
+                          "column_type": "string"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB",
+                    "name": "Select from Table",
+                    "title": "Select from Table",
+                    "type": "core.selectfromtable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "columns": [
+                        {
+                          "column_name": "id",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "name",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "url",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "api",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "licensing",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "cloudRegion",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "managementDetails",
+                          "column_type": "string"
+                        }
+                      ],
+                      "continue_on_failure": true,
+                      "description": "Filter for the condition passed in input",
+                      "display_name": "Select from Table",
+                      "input_table": "$activity.definition_activity_02PT5RYQ5GUT24znqYMJppi4U6ZQqQlZmbm.output.read_table_from_json$",
+                      "number_of_rows": {
+                        "all_rows": true
+                      },
+                      "persist_output": false,
+                      "skip_execution": false,
+                      "sorting": {
+                        "no_sort": true
+                      },
+                      "where_clause": "name = \"$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.input.variable_workflow_02PT5RYK6FPXJ46t3yLzmdaXgtFO5kl75xO$\""
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_02PT5RYSD87BI7kr4m6rr6FRFyc2Q3j1QV9",
+                    "name": "Condition Block",
+                    "title": "Is Organization Name Found?",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "conditions": [],
+                      "continue_on_failure": false,
+                      "display_name": "Is Organization Name Found?",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_02PT5RYSYP0UB7UOfU138Cc1owm7ASWIGNr",
+                        "name": "Condition Branch",
+                        "title": "Found",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.row_count$",
+                            "operator": "gt",
+                            "right_operand": 0
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Found",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_02PT5RYUGBR5R7XltC8PXsO2tJord7Ixp5p",
+                            "name": "Set Variables",
+                            "title": "Set Output Variables",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Set Output Variables",
+                              "skip_execution": false,
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6EICM4TfYqdRmMgP2T6XCGLSRBY$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].api$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6F7SL4TKDEVJMJmyOabD5ORN9Uy$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].cloudRegion$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6DSPJ6oPbQLedfccYZRXfgwMlYE$",
+                                  "variable_value_new": 200
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                                  "variable_value_new": "Organization Found"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6EVUA6rLd5U18ylHfBSVbHaSCvw$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].licensing$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6E3NW30v11etF4wFmmvrIPUUDBo$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].managementDetails$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6EC7F24qOwwsUzECwpnZlii8X5d$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].name$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6FGK162ih0PbCNHxMbDCtTQY1gS$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].url$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.workflow_results$",
+                                  "variable_value_new": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.workflow_results_code$",
+                                  "variable_value_new": "completed-successfully"
+                                },
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6FV4H6fh7qYlPGFWTc7jH9FPBed$",
+                                  "variable_value_new": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.output_table[0].id$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_02PT5RYVMN4L41994tusFYrzhBnOR5CgV8e",
+                            "name": "Completed",
+                            "title": "Completed, Success",
+                            "type": "logic.completed",
+                            "base_type": "activity",
+                            "properties": {
+                              "completion_type": "succeeded",
+                              "continue_on_failure": false,
+                              "display_name": "Completed, Success",
+                              "result_message": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_02PT5RYWDC66R5Jpgecfrrx3KBYWyI0XXRD",
+                        "name": "Condition Branch",
+                        "title": "Not Found",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.row_count$",
+                            "operator": "eq",
+                            "right_operand": 0
+                          },
+                          "continue_on_failure": false,
+                          "description": "Network is not found, populate output variables as failed and set workflow as failed.",
+                          "display_name": "Not Found",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm",
+                            "name": "Select from Table",
+                            "title": "Select from Table",
+                            "type": "core.selectfromtable",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "columns": [
+                                {
+                                  "column_name": "id",
+                                  "column_type": "string"
+                                },
+                                {
+                                  "column_name": "name",
+                                  "column_type": "string"
+                                },
+                                {
+                                  "column_name": "url",
+                                  "column_type": "string"
+                                },
+                                {
+                                  "column_name": "api",
+                                  "column_type": "string"
+                                },
+                                {
+                                  "column_name": "licensing",
+                                  "column_type": "string"
+                                },
+                                {
+                                  "column_name": "cloudRegion",
+                                  "column_type": "string"
+                                },
+                                {
+                                  "column_name": "managementDetails",
+                                  "column_type": "string"
+                                }
+                              ],
+                              "continue_on_failure": true,
+                              "description": "Filter for the condition passed in input",
+                              "display_name": "Select from Table",
+                              "input_table": "$activity.definition_activity_02PT5RYQ5GUT24znqYMJppi4U6ZQqQlZmbm.output.read_table_from_json$",
+                              "number_of_rows": {
+                                "all_rows": true
+                              },
+                              "persist_output": false,
+                              "skip_execution": false,
+                              "sorting": {
+                                "no_sort": true
+                              },
+                              "where_clause": "id = \"$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.input.variable_workflow_02PT5RYK6FPXJ46t3yLzmdaXgtFO5kl75xO$\""
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_02PT5RYYMJOQR3xIv8B6tmzIlnaNLScJDV6",
+                            "name": "Condition Block",
+                            "title": "Is Organization ID Found?",
+                            "type": "logic.if_else",
+                            "base_type": "activity",
+                            "properties": {
+                              "conditions": [],
+                              "continue_on_failure": false,
+                              "display_name": "Is Organization ID Found?",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "blocks": [
+                              {
+                                "unique_name": "definition_activity_02PT5RYZJDTII2D5MXqpHzinZCLPLBX0To1",
+                                "name": "Condition Branch",
+                                "title": "Found",
+                                "type": "logic.condition_block",
+                                "base_type": "activity",
+                                "properties": {
+                                  "condition": {
+                                    "left_operand": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.row_count$",
+                                    "operator": "gt",
+                                    "right_operand": 0
+                                  },
+                                  "continue_on_failure": false,
+                                  "display_name": "Found",
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity",
+                                "actions": [
+                                  {
+                                    "unique_name": "definition_activity_02PT5RZ1650D13n2BTK2whKHMYQdEJhJt5V",
+                                    "name": "Set Variables",
+                                    "title": "Set Output Variables",
+                                    "type": "core.set_multiple_variables",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "continue_on_failure": false,
+                                      "display_name": "Set Output Variables",
+                                      "skip_execution": false,
+                                      "variables_to_update": [
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6EICM4TfYqdRmMgP2T6XCGLSRBY$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].api$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6F7SL4TKDEVJMJmyOabD5ORN9Uy$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].cloudRegion$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6DSPJ6oPbQLedfccYZRXfgwMlYE$",
+                                          "variable_value_new": 200
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                                          "variable_value_new": "Organization Found"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6EVUA6rLd5U18ylHfBSVbHaSCvw$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].licensing$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6E3NW30v11etF4wFmmvrIPUUDBo$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].managementDetails$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6EC7F24qOwwsUzECwpnZlii8X5d$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].name$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6FGK162ih0PbCNHxMbDCtTQY1gS$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].url$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.workflow_results$",
+                                          "variable_value_new": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.workflow_results_code$",
+                                          "variable_value_new": "completed-successfully"
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6FV4H6fh7qYlPGFWTc7jH9FPBed$",
+                                          "variable_value_new": "$activity.definition_activity_02PT5RYXJAYAD2lGbMwn6dnJ6U0fYqUujmm.output.output_table[0].id$"
+                                        }
+                                      ]
+                                    },
+                                    "object_type": "definition_activity"
+                                  },
+                                  {
+                                    "unique_name": "definition_activity_02PT5RZ2I3ARU56zaMlxDjl1XZms51ePzat",
+                                    "name": "Completed",
+                                    "title": "Completed, Success",
+                                    "type": "logic.completed",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "completion_type": "succeeded",
+                                      "continue_on_failure": false,
+                                      "display_name": "Completed, Success",
+                                      "result_message": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                                      "skip_execution": false
+                                    },
+                                    "object_type": "definition_activity"
+                                  }
+                                ]
+                              },
+                              {
+                                "unique_name": "definition_activity_02PT5RZ36WWC44wr8Q9UqAh5Pp1XNG8lS9S",
+                                "name": "Condition Branch",
+                                "title": "Not Found / Failed",
+                                "type": "logic.condition_block",
+                                "base_type": "activity",
+                                "properties": {
+                                  "condition": {
+                                    "left_operand": "$activity.definition_activity_02PT5RYRA2CFE73vE1SxI5ZqhIOWKyiolwB.output.row_count$",
+                                    "operator": "eq",
+                                    "right_operand": 0
+                                  },
+                                  "continue_on_failure": false,
+                                  "description": "Network is not found, populate output variables as failed and set workflow as failed.",
+                                  "display_name": "Not Found / Failed",
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity",
+                                "actions": [
+                                  {
+                                    "unique_name": "definition_activity_02PT5RZ48M7YB0n3s4049FU5FLzOUb2WA4Q",
+                                    "name": "Set Variables",
+                                    "title": "Set Output Variables",
+                                    "type": "core.set_multiple_variables",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "continue_on_failure": false,
+                                      "display_name": "Set Output Variables",
+                                      "skip_execution": false,
+                                      "variables_to_update": [
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6DSPJ6oPbQLedfccYZRXfgwMlYE$",
+                                          "variable_value_new": 404
+                                        },
+                                        {
+                                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                                          "variable_value_new": "Organization Not Found"
+                                        }
+                                      ]
+                                    },
+                                    "object_type": "definition_activity"
+                                  },
+                                  {
+                                    "unique_name": "definition_activity_02PT5RZ4ZAIHA5cXIzrjcdOFMMHoqcl44Ob",
+                                    "name": "Completed",
+                                    "title": "Completed, Failed",
+                                    "type": "logic.completed",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "completion_type": "failed-completed",
+                                      "continue_on_failure": false,
+                                      "display_name": "Completed, Failed",
+                                      "result_message": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                                      "skip_execution": false
+                                    },
+                                    "object_type": "definition_activity"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_02PT5RZ5UC7IQ40WgnUPLm5bw9hMYzDazuk",
+                "name": "Condition Branch",
+                "title": "Get Failed",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXKZLXKLJFB451gVbqCxrIVfpczDAxuGy$",
+                    "operator": "ne",
+                    "right_operand": 200
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Get Failed",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02PT5RZ7F1Z641QACw1kxKJyBJtJHcjGAyM",
+                    "name": "Set Variables",
+                    "title": "Set Output Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Output Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6DSPJ6oPbQLedfccYZRXfgwMlYE$",
+                          "variable_value_new": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXKZLXKLJFB451gVbqCxrIVfpczDAxuGy$"
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                          "variable_value_new": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXL09Q9UO5F2TvLnW2ZmzubYwc8jRtqRV$"
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6GJ9M1P35GgIwa9QGDu7qvJjke0$",
+                          "variable_value_new": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXK894H3O8J3yilBiKcPzyVVXvutJAnO0$"
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6G5K55jApNVTwoI27vP00kOFNEt$",
+                          "variable_value_new": "$activity.definition_activity_02PT5RYNHCDAX4qz7R4acH2Zdq6pyGui96z.output.variable_workflow_02LXKZA6725S35QBWMZCg1AlZnT11mbSFQi$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_02PT5RZ8JPMV023Ca5ZiY8B9zSSNS7fJHKT",
+                    "name": "Completed",
+                    "title": "Completed, Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "continue_on_failure": false,
+                      "display_name": "Completed, Failed",
+                      "result_message": "$workflow.definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm.output.variable_workflow_02PT5RYK6ENND5FhTyEjTIMg6HICuvQ6PUz$",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "categories": [
+          "category_02LML12JUEG9X7EkGfSLZEGaaaww7tQZkN5"
+        ]
+      },
+      "atomic_workflows": [
+        "definition_workflow_02LV5GIDUTY3X0WhuidM5ZWhkjL8wQCGAPq"
+      ],
+      "dependent_workflows": [
+        "definition_workflow_02LV5GIDUTY3X0WhuidM5ZWhkjL8wQCGAPq"
+      ]
+    }
+  ],
+  "dependent_workflows": [
+    "definition_workflow_02LCR4UKH38PM6zDR4Bx2b2J165gCF1mhvh",
+    "definition_workflow_02PT5RYJPUL4P59gNpELr7YHoYofJVqBaCm"
+  ]
+}
